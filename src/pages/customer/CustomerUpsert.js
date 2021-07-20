@@ -1,24 +1,34 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createCustomerAction } from "../../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { createCustomerAction, updateCustomerAction } from "../../redux/store";
 import { RegNav } from "../adminPage/RegNav";
+// import { AppNav } from "./AppNav";
 
-export const CustomerRegister = () => {
+export const CustomerUpsert = () => {
   const dispatch = useDispatch();
-  
-  const [aadharNumber, setAadharNumber] = useState("");
-  const [customerName, setCustomerName] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
-  const [email, setEmail] = useState("");
-  const [gender, setGender] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [nationality, setNationality] = useState("");
-  const [panNumber, setPanNumber] = useState("");
-  const [userId, setUserId] = useState("");
+  const state = useSelector((state) => state);
+  console.log("UpdateRef", state.updateRef);
+
+  const [aadharNumber, setAadharNumber] = useState(
+    state.updateRef.aadharNumber
+  );
+  const [customerName, setCustomerName] = useState(
+    state.updateRef.customerName
+  );
+  const [dateOfBirth, setDateOfBirth] = useState(state.updateRef.dateOfBirth);
+  const [email, setEmail] = useState(state.updateRef.email);
+  const [gender, setGender] = useState(state.updateRef.gender);
+  const [mobileNumber, setMobileNumber] = useState(
+    state.updateRef.mobileNumber
+  );
+  const [nationality, setNationality] = useState(state.updateRef.nationality);
+  const [panNumber, setPanNumber] = useState(state.updateRef.panNumber);
+  const [userId, setUserId] = useState(state.updateRef.user?.userId);
   // const [role, setRole] = useState("");
 
   // const updateRole = (e) => setRole(e.target.value);
   const updateAadharNumber = (e) => setAadharNumber(e.target.value);
+
   const updateCustomerName = (e) => setCustomerName(e.target.value);
   const updateDateOfBirth = (e) => setDateOfBirth(e.target.value);
   const updateEmail = (e) => setEmail(e.target.value);
@@ -45,9 +55,7 @@ export const CustomerRegister = () => {
         },
       })
     );
-
     // clear the form
-    setUserId("");
     setAadharNumber("");
     setCustomerName("");
     setDateOfBirth("");
@@ -56,13 +64,39 @@ export const CustomerRegister = () => {
     setMobileNumber("");
     setNationality("");
     setPanNumber("");
+    setUserId("");
+  };
+  const updateCustomer = () => {
+    dispatch(
+      updateCustomerAction({
+        customerId: state.updateRef.customerId,
+        aadharNumber,
+        customerName,
+        dateOfBirth,
+        email,
+        gender,
+        mobileNumber,
+        nationality,
+        panNumber,
+        user: {
+          userId,
+          role: state.updateRef.user.role,
+          password: state.updateRef.user.password,
+        },
+      })
+    );
   };
 
   return (
     <div>
       <RegNav/>
       <div className="alert alert-secondary ">
-        <h3>Register as Customer</h3>
+        {/* <h3>Register as Customer</h3> */}
+        {state.updateRef.customerId ? (
+          <h3>Customer Update</h3>
+        ) : (
+          <h3>Customer Register</h3>
+        )}
       </div>
       <div className="container  pt-1 pb-5 w-50 ">
         <form className="mx-4 alert alert-primary">
@@ -103,6 +137,15 @@ export const CustomerRegister = () => {
               className="form-control form-control-lg mb-1 col-sm-7"
               placeholder="Enter Date of Birth"
             />
+
+            {/* <input
+              type="date"
+              name="begin"
+              placeholder="dd-mm-yyyy"
+              value=""
+              min="1997-01-01"
+              max="2030-12-31"
+            /> */}
           </div>
 
           <div className="form-group row">
@@ -189,12 +232,22 @@ export const CustomerRegister = () => {
           </div> */}
 
           <div>
-            <input
-              type="button"
-              onClick={addNewCustomer}
-              value="Add Customer"
-              className="btn btn-lg btn-dark w-100 mb-2"
-            />
+            {state.updateRef.customerId ? (
+              <input
+                type="button"
+                // onClick={addNewEmployee}
+                onClick={updateCustomer}
+                value="Update Employee"
+                className="btn btn-lg btn-secondary w-100"
+              />
+            ) : (
+              <input
+                type="button"
+                onClick={addNewCustomer}
+                value="Add Employee"
+                className="btn btn-lg btn-secondary w-100"
+              />
+            )}
           </div>
         </form>
       </div>

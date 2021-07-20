@@ -1,9 +1,24 @@
 import { Nav, Navbar } from "react-bootstrap";
 
-import { Link } from "react-router-dom";
-import { AppFooter } from "./AppFooter";
+import { Link, useHistory } from "react-router-dom";
+import { signOutAction, updateRenderAction } from "../../redux/store";
+import { useDispatch } from "react-redux";
 
 export const AppNav = () => {
+  const dispatch = useDispatch();
+  let history = useHistory();
+
+  const signOut = () => {
+    dispatch(signOutAction());
+
+    // redirect the user to login page.
+    history.push("/");
+  };
+  const clearCustomerURef = () => {
+    dispatch(updateRenderAction({}));
+    history.push("/customer-upsert");
+  };
+
   return (
     <div>
       <Navbar variant="dark" expand="lg" style={{ background: "black" }}>
@@ -15,28 +30,36 @@ export const AppNav = () => {
 
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Nav.Link className="mr-5 " as={Link} to="/customer-list">
+            <Nav.Link className="mx-auto " as={Link} to="/customer-list">
               My Details
             </Nav.Link>
-            <Nav.Link className="mr-5 " as={Link} to="/customer-upsert">
+            {/* <Nav.Link className="mx-auto " as={Link} to="/customer-upsert">
               Customer Register
-            </Nav.Link>
-            <Nav.Link className="mr-5 " as={Link} to="/">
+            </Nav.Link> */}
+            {/* <Nav.Link onClick={clearCustomerURef}>Customer Register</Nav.Link> */}
+            <Nav.Link className="mx-auto " as={Link} to="/status">
               Application Status
             </Nav.Link>
-            <Nav.Link className="mx-auto " as={Link} to="/customer-list">
-              Sign Out
+            <Nav.Link
+              className="mx-auto "
+              as={Link}
+              to="/"
+              onClick={signOut}
+            >
+              Sign out
             </Nav.Link>
-            <Nav.Link className="mx-auto " as={Link} to="/admin-register">
+            {/* <Nav.Link className="mx-auto " as={Link} to="/admin-register">
               Admin Register
-            </Nav.Link>
+            </Nav.Link> */}
             <Nav.Link className="mx-auto " as={Link} to="/apply-loan">
               ApplyLoan
             </Nav.Link>
+            {/* <Nav.Link className="mx-auto " as={Link} to="/user-signin">
+              UserSignin
+            </Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <AppFooter />
     </div>
   );
 };

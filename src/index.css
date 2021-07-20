@@ -6,8 +6,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-size: cover;
-  background-image: url(./images/R.jpg);
-  background-color: brown;
 }
 
 code {
@@ -17,4 +15,11 @@ code {
 
 .backcolr{
   background-color: black;
+}
+.styleback{
+  background-color: cornflowerblue;
+}
+hr.class-2 {
+  width: 370px;
+  border-top: 5px double #8c8b8b;
 }

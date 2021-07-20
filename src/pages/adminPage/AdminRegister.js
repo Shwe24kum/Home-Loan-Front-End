@@ -40,10 +40,8 @@ export const AdminRegister = () => {
       <div className="alert alert-secondary ">
         <h3>Register as Admin</h3>
       </div>
-      <div
-        className=" d-flex justify-content-center "
-        style={{ height: "100vh" }}
-      >
+      <div className=" d-flex justify-content-center "
+        style={{ height: "100vh" }}>
         <div className="w-50">
           <form className="mx-4 alert alert-primary">
             <div>
@@ -55,7 +53,7 @@ export const AdminRegister = () => {
                 placeholder="Enter your UserId"
               />
             </div>
-
+            
             <div>
               <input
                 type="text"

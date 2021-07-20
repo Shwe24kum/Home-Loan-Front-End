@@ -14,11 +14,11 @@ export const Login = () => {
   const state = useSelector((state) => state);
   let history = useHistory();
 
-  const [userId, setUserId] = useState("");
+  const [userId, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
 
-  const updateUserId = (e) => setUserId(e.target.value);
+  const updateUserName = (e) => setUserName(e.target.value);
   const updatePassword = (e) => setPassword(e.target.value);
   const updateRole = (e) => setRole(e.target.value);
 
@@ -33,7 +33,7 @@ export const Login = () => {
           role
         })
         );
-        setUserId("");
+        setUserName("");
     setPassword("");
     setRole("");
     } 
@@ -41,6 +41,7 @@ export const Login = () => {
       e.stopPropagation();
       formEl.current.classList.add("was-validated");
     }
+    if (state.authSuccess === true) {
     switch(document.getElementById('s1').value){
 
       case "admin":
@@ -48,26 +49,26 @@ export const Login = () => {
         break;
 
         case "customer":
-          history.push("/about");
+          history.push("/customer-list");
+          break;
+
+          case "financeOfficer":
+          history.push("/AppNavs");
           break;
 
       default:
         history.push("/contact");
         break;
     }
+  }
   };
     // REACT ROUTE DOM
-  if (state.authSuccess === true) {
-    // redirecting the user /employee-list page;
-    console.log("success");
-    history.push("/contact");
-    
-  }
 
     return (      
         <div>
       <Navigation />
-    <MDBContainer className='mt-4 d-flex justify-content-center'>
+    <MDBContainer 
+    className='mt-4 d-flex justify-content-center'>
     <MDBRow style={{backgroundColor: 'black'}}>
       <MDBCol>
         <MDBCard className='bg-info' style={{
@@ -77,7 +78,9 @@ export const Login = () => {
            <form className="needs-validation"
           ref={formEl}
           noValidate>
-        <h1 className="text-center alert alert-info"> Login </h1>
+        <h1 
+        className="text-center alert alert-info"> 
+        Login </h1>
 
         {state.authFailure && (
           <h6 className="text-center alert alert-danger">
@@ -89,7 +92,7 @@ export const Login = () => {
             <label>User Id</label>
                 <input type="text" 
                  value={userId}
-                 onChange={updateUserId}
+                 onChange={updateUserName}
                 placeholder="Enter UserId" 
                 className="form-control"
                 required

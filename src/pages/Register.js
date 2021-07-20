@@ -22,7 +22,6 @@ export const Register = ()=> {
   const updateRole = (e) =>setRole(e.target.value);
 
   const addNewUser = (e) => {
-
     e.preventDefault();
     const isFormValid = formEl.current.checkValidity();
     if (isFormValid) {
@@ -48,7 +47,7 @@ export const Register = ()=> {
         break;
 
       case "customer":
-        hist.push("/CustomerRegister");
+        hist.push("/customer-upsert");
         break;
 
       case "landofficer":
