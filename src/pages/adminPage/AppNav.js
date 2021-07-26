@@ -20,7 +20,7 @@ export const AppNav = () => {
             <Nav.Link className="mr-5 " as={Link} to="/viewbyId">
               Loan Application By ID
             </Nav.Link>
-            <Nav.Link className="mr-5 " as={Link} to="/status">
+            <Nav.Link className="mr-5 " as={Link} to="/statuss">
               Status
             </Nav.Link>
             <Nav.Link className="mr-5 " as={Link} to="/">

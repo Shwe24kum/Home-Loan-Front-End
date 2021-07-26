@@ -93,8 +93,8 @@ export const updateFinanceApprovalAction = (payload) => {
 export const updateStatusAction = (payload) => {
   console.log(payload);
   return async (dispatch) => {
-    console.log("update wala", payload.applicationnId);
-    const url = `http://localhost:8080/update/${payload.applicationnId}`;
+    console.log("update wala", payload.applicationId);
+    const url = `http://localhost:8085/update/${payload.applicationId}`;
     const response = await axios.put(url, payload);
     console.log(response.data);
     alert("List updated Successfully");
@@ -117,7 +117,7 @@ export const getAllLoanAction = () => {
 export const deleteLoanByIdAction = (payload) => {
   return async (dispatch) => {
     console.log("Delete wala", payload.applicationId);
-    const url = `http://localhost:8080/delete/${payload.applicationId}`;
+    const url = `http://localhost:8085/delete/${payload.applicationId}`;
     const response = await axios.delete(url);
     console.log(response.data);
     alert("List Deleted Successfully");
@@ -158,7 +158,7 @@ export const getLoanByIdAction = (payload) => {
 export const getLoanAppByIdAction = (payload) => {
   return async (dispatch) => {
     console.log("HIii", payload.applicationId);
-    const url = `http://localhost:8080/view/${payload.applicationId}`;
+    const url = `http://localhost:8085/view/${payload.applicationId}`;
     const response = await axios.get(url);
     console.log(response.data);
     dispatch({ type: "LOAN_GET_ALL_ACTION_TYPE", payload: response.data });
@@ -266,7 +266,7 @@ function CustomerReducer(state = initState, action) {
     case AUTH_SUCCESS_ACTION_TYPE:
       return { ...state, authSuccess: action.payload };
     case LOAN_GET_ALL_ACTION_TYPE:
-      return { ...state, loanAppList: action.payload };
+      return { ...state, loannList: action.payload };
     case FINANCE_ACCEPT_RENDER_ACTION_TYPE:
       return { ...state, loanApp: action.payload };
     case CUSTOMER_UPDATE_RENDER_ACTION_TYPE:

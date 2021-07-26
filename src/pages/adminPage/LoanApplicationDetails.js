@@ -30,7 +30,7 @@ export const LoanApplicationDetails = () => {
   };
   const deleteLoan = (applicationId) => {
     axios
-      .delete("http://localhost:8080/delete/" + applicationId)
+      .delete("http://localhost:8085/delete/" + applicationId)
       .then((response) => {
         if (response.data != null) {
           alert("Application deleted successfully!!!");
@@ -41,7 +41,7 @@ export const LoanApplicationDetails = () => {
   };
   const pending = (Status) => {
     axios
-      .get("http://localhost:8080/update/" + this.Status)
+      .get("http://localhost:8085/update/" + this.Status)
       .then((response) => {
         if (response.data == pending) {
           alert("Status not changed!!!");
@@ -53,7 +53,7 @@ export const LoanApplicationDetails = () => {
 
   const approve = (Status) => {
     axios
-      .put("http://localhost:8080/update/" + this.Status)
+      .put("http://localhost:8085/update/" + this.Status)
       .then((response) => {
         if (response.data != pending) {
           alert("Application updated successfully!!!");
@@ -64,7 +64,7 @@ export const LoanApplicationDetails = () => {
   };
   const rejected = (Status) => {
     axios
-      .put("http://localhost:8080/update/" + Status.status)
+      .put("http://localhost:8085/update/" + Status.status)
       .then((response) => {
         if (response.data != null) {
           alert("Application updated successfully!!!");
@@ -105,7 +105,7 @@ export const LoanApplicationDetails = () => {
           </tr>
         </thead>
         <tbody className="alert alert-primary">
-          {state.loannList.map((item, index) => {
+          {state.loanList.map((item, index) => {
             return (
               <tr key={index}>
                 {/* <th scope="row">1</th> */}
@@ -127,30 +127,6 @@ export const LoanApplicationDetails = () => {
                 {/* <td><Status/></td> */}
                 <td>
                   <input type="button" value="Update" onClick={()=>updateStatus(item)}/>
-                  {/* <ButtonGroup>
-                    <Button
-                      type="button"
-                      value="Update"
-                      // onClick={updateStatus.bind(this, item.status)}
-                      variant="sm"
-                    >
-              
-                      <select>
-                        <option
-                          value="pending"
-                          // onClick={pending.bind(this, this.Status)}
-                        >
-                          Pending
-                        </option>
-
-                        <option value="approved" onClick={approve}>
-                          Approved
-                        </option>
-
-                        <option value="rejected">Rejected</option>
-                      </select>
-                    </Button>
-                  </ButtonGroup> */}
                 </td>
 
                 <td>

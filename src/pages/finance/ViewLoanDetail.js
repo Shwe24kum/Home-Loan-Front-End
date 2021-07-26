@@ -13,10 +13,10 @@ export const ViewLoanDetail = () => {
   let hist = useHistory();
   
 
-  const accept = (loanAppList) => {
-    console.log("Update Record", loanAppList);
-    state.loanAppList.finananceVerificationApproval= true;
-    dispatch(updateFinanceRenderAction(loanAppList));
+  const accept = (loannList) => {
+    console.log("Update Record", loannList);
+    state.loannList.finananceVerificationApproval= true;
+    dispatch(updateFinanceRenderAction(loannList));
     hist.push("/updateloan");
   };
 
@@ -40,7 +40,7 @@ export const ViewLoanDetail = () => {
             </tr>
             </thead>
             <tbody className="alert alert-primary">
-          {state.loanAppList.map((item, index) => (
+          {state.loannList.map((item, index) => (
             <tr key={index}>
               <td>{item.applicationId}</td>
               <td>{item.adminApproval?.toString()}</td>
@@ -60,7 +60,7 @@ export const ViewLoanDetail = () => {
             </tr>
             </thead>
             <tbody className="alert alert-primary">
-          {state.loanAppList.map((item, index) => (
+          {state.loannList.map((item, index) => (
             <tr key={index}>
               <td>{item.loanAppliedAmount}</td>
               <td>{item.loanApprovedAmount}</td>
@@ -80,7 +80,7 @@ export const ViewLoanDetail = () => {
           </tr>
         </thead>
               <tbody className="alert alert-primary">
-          {state.loanAppList.map((item, index) => (
+          {state.loannList.map((item, index) => (
             <tr key={index}>
               <td>{item.status}</td>
               <td>{item.tenure}</td>

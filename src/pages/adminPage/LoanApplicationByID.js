@@ -20,6 +20,7 @@ export const LoanApplicationByID = () => {
   return (
     <div>
       <AppNav />
+      <div>
       <h1 className="App">Loan Application By ID.</h1>
       <input
        
@@ -28,7 +29,7 @@ export const LoanApplicationByID = () => {
         placeholder="search Id"
         onChange={update}
       />
-      <input className="App-header" type="button" value="Search" onClick={addLoan} />
+      <input type="button" value="Search" onClick={addLoan} />
 
       <table className="table ml-10">
         <thead className="thead-dark">
@@ -38,11 +39,41 @@ export const LoanApplicationByID = () => {
             <th scope="col">applicationDate</th>
             <th scope="col">financeVerificationApproval</th>
             <th scope="col">landVerificationApproval</th>
+            </tr>
+            </thead>
+            <tbody className="alert alert-primary">
+          {state.loannList && (
+            <tr>
+              <td>{state.loannList.applicationId}</td>
+              <td>{state.loannList.adminApproval?.toString()}</td>
+              <td>{state.loannList.applicationDate}</td>
+              <td>{state.loannList.finananceVerificationApproval?.toString()}</td>
+              <td>{state.loannList.landVerificationApproval?.toString()}</td>
+              </tr>
+              )}
+              </tbody>
+            <thead className="thead-dark">
+            <tr>
             <th scope="col">loanAppliedAmount</th>
             <th scope="col">loanApprovedAmount</th>
             <th scope="col">monthlyExpenses</th>
             <th scope="col">othetMonthlyExpenses</th>
             <th scope="col">rateOfInterest</th>
+            </tr>
+            </thead>
+            <tbody className="alert alert-primary">
+          {state.loannList && (
+            <tr>
+              <td>{state.loannList.loanAppliedAmount}</td>
+              <td>{state.loannList.loanApprovedAmount}</td>
+              <td>{state.loannList.monthlyExpenses}</td>
+              <td>{state.loannList.otherMonthlyExpenses}</td>
+              <td>{state.loannList.rateOfInterest}</td>
+              </tr>
+              )}
+              </tbody>
+            <thead className="thead-dark">
+            <tr>
             <th scope="col">status</th>
             <th scope="col">tenure</th>
             <th scope="col">totalAnnualIncome</th>
@@ -51,30 +82,18 @@ export const LoanApplicationByID = () => {
           </tr>
         </thead>
         <tbody className="alert alert-primary">
-          {state.loanList && (
+          {state.loannList && (
             <tr>
-              {/* <th scope="row">1</th> */}
-              <td>{state.loanList.applicationId}</td>
-              <td>{state.loanList.adminApproval?.toString()}</td>
-              <td>{state.loanList.applicationDate}</td>
-              <td>
-                {state.loanList.finananceVerificationApproval?.toString()}
-              </td>
-              <td>{state.loanList.landVerificationApproval?.toString()}</td>
-              <td>{state.loanList.loanAppliedAmount}</td>
-              <td>{state.loanList.loanApprovedAmount}</td>
-              <td>{state.loanList.monthlyExpenses}</td>
-              <td>{state.loanList.otherMonthlyExpenses}</td>
-              <td>{state.loanList.rateOfInterest}</td>
-              <td>{state.loanList.status}</td>
-              <td>{state.loanList.tenure}</td>
-              <td>{state.loanList.totalAnnualIncome}</td>
-              <td>{state.loanList.customer?.customerId}</td>
-              <td>{state.loanList.customer?.user?.userId}</td>
+              <td>{state.loannList.status}</td>
+              <td>{state.loannList.tenure}</td>
+              <td>{state.loannList.totalAnnualIncome}</td>
+              <td>{state.loannList.customer?.customerId}</td>
+              <td>{state.loannList.customer?.user?.userId}</td>
             </tr>
           )}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };

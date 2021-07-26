@@ -16,9 +16,6 @@ export const AppNavs = () => {
             <Nav.Link className="mr-5 text-dark" as={Link} to="/viewcustomer">
               <h6>View Customers</h6>
             </Nav.Link>
-            <Nav.Link className="mr-5 text-dark" as={Link} to="/approval">
-             <h6>My Details</h6>
-            </Nav.Link>
             <Nav.Link className="mr-5 text-dark" as={Link} to="/">
               <h6>Sign Out</h6>
             </Nav.Link>
